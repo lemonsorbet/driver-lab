@@ -1,0 +1,22 @@
+Laboration for a linux device driver course:
+
+In this lab I wrote firmware for an AT90USB162 microcontroller and a driver to
+handle it.
+
+The firmware does two main functions: it receives incoming data from it's USB
+connection, interprets commands by a byte protocol, and then try to execute
+them. Turning a custom diode on and off are the available commands implemented.
+Secondly, it listens for input from a custom mounted button on the controller,
+and sends information through the USB connection when the button is pressed
+down.
+
+The driver registers itself with the USB subsystem and awaits handling newly
+connected USB devices that match the identification of our custom made USB-plug.
+Because the driver is registered as a character device driver, processes in user
+space can send and receive data to the device through the driver using the
+filesystem interface. Now processes can, from the opposite end, turn on/off the
+diode and read when the button is pressed.
+
+The firmware requires the LUFA library for AVR microcontrollers.
+
+/Fredrik Yhlen
